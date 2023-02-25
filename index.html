@@ -49,6 +49,9 @@
         .CodeMirror::-webkit-scrollbar {
             display: none;
         }
+        .CodeMirror-scroll {
+            overflow: hidden;
+        }
     </style>
     <title>JSON Obfuscate</title>
     <script>
@@ -69,6 +72,7 @@
             $(".c-btn").hide();
             editor = CodeMirror.fromTextArea(_("input"), {
                 lineNumbers: true,
+                scrollbarStyle: "null",
                 mode: "javascript",
                 theme: "tomorrow-night-bright",
                 gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
