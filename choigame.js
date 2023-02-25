@@ -9,6 +9,14 @@ async function file_upload(ele) {
     });
     reader.readAsText(ele.files[0]);
 }
+function clear() {
+    editor.setValue("");
+    global_scope = "";
+    _("out-label").innerHTML = "";
+    $(".c-btn").hide();
+    $(".s-btn").show();
+    $(".s-btn").on("click", onSubmit);
+}
 
 const onSubmit = () => {
     const data = editor.getValue().replace(/(\/\*[\w\W]+?\*\/)|(\/\/[\w\W]+?\n)|(\n\/\/[\w\W]+?\n)/gm, "").replace(/\n/g, "").trim();
@@ -23,6 +31,9 @@ const onSubmit = () => {
     editor.setValue(global_scope);
     _("out-label").innerHTML = `
     <label>You can <u onclick="coppyToClipboard()">coppy it to clipboard</u> or <u onclick="saveJsonFile(&#34;obfucate.json&#34;, global_scope)"> download file</u></label>`;
+    $(".c-btn").show();
+    $(".c-btn").on("click", clear);
+    $(".s-btn").hide();
 },
 devMode = () => {
     if (devc > -1 && (devc++) > 10) {
